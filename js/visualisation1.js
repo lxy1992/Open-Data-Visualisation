@@ -38,7 +38,7 @@ d3.csv('http://training.theodi.org/DataWorkshop/course/en/exercises/Spend_april_
     var expenseTypeGroup = expenseType.group();
   
     //Create a table of data
-  //建表，分组，按照供应商的名字来排
+  //创建数据表，用于Raw Data的显示
     dataTable
         .dimension(expenseType)
         .group(function (d) {
@@ -77,12 +77,14 @@ d3.csv('http://training.theodi.org/DataWorkshop/course/en/exercises/Spend_april_
             })
   .xAxis().ticks(6);//设置x轴的数值总数？ 测试下
   
+  
+  //Get the data about the date of ecah expense
   var date = ndx.dimension(function(d){
     return d.dd; //设置排序后的日期
   });
   var dateGroup = date.group();
   
-  //设置时间轴
+  //Draw a timeline chart about daily expense 
   timeline
   .width(500)
   .height(200)
@@ -96,11 +98,13 @@ d3.csv('http://training.theodi.org/DataWorkshop/course/en/exercises/Spend_april_
   })
   .x(d3.time.scale().domain([mindate,maxdate]))
   .renderHorizontalGridLines(true); //绘图？？
-  
+ 
+  //Get the data about the company staus
   var supplierStatus = ndx.dimension(function(d){
     return d["Company Status"];
   });
   var supplierStatusGroup = supplierStatus.group();
+  //Build the Pie chart for this data
   statusPie
   .width(180)
     .height(180)
