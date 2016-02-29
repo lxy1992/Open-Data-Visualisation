@@ -176,6 +176,8 @@ div.dc-chart {
 }
 
 .dc-data-table {
+
+    
 }
 
 .dc-chart g.state {
@@ -224,8 +226,9 @@ div.dc-chart {
 }
 
 .dc-chart g.row text {
-    fill: white;
+    fill: black;
     font-size: 12px;
+    
     cursor: pointer;
 }
 

@@ -1,75 +1,104 @@
-// Create variables and define the charts to use from the crossfilter library
-//创建变量和从crossfilter库中定义图表
-var dataTable = dc.dataTable('#dc-data-table');
-var statusPie = dc.pieChart('#status_pie');
-var timeline = dc.barChart('#timeline');
-var flexibleRow = dc.rowChart('#flexible_row');
 
-// Load the data and create the charts
-//加载数据，创建表
-d3.csv('http://training.theodi.org/DataWorkshop/course/en/exercises/Spend_april_10_enriched.csv', function (data) {
-    // Create a crossfilter object from the data and group all the data together.
-  //从数据中创建crossfilter对象，并将所有数据组在一起
-    var ndx = crossfilter(data);
-    var all = ndx.groupAll();// group all是什么作用？
+var dataTable = dc.dataTable('#dc-data-table');
+var costStatusPie = dc.pieChart('#status_pie');
+var timeScheduleChart = dc.pieChart('#time-Schedule-Chart');
+var riskStatusChart = dc.pieChart('#Risk-Status-Chart');
+var flexibleRow = dc.rowChart('#flexible_row');
+d3.selectAll('a#all').on('click', function () {
+  dc.filterAll();
+  dc.renderAll();
+});
+d3.selectAll('a#reset_cost').on('click', function () {
+  costStatusPie.filterAll();
+  dc.renderAll();
+});
+d3.selectAll('a#reset_time').on('click', function () { timeScheduleChart.filterAll();
+  dc.renderAll();
+});
+d3.selectAll('a#reset_risk').on('click', function () {
+ riskStatusChart.filterAll();
+  dc.renderAll();
+});
+
+var formatDollars = d3.format("$,.2f");
+
+d3.csv('data/Projects_Data.csv', function (d) {
+  //  if (+d["Projected/Actual Cost ($ M)"] == 0) {
+  //      return;
+   // }
     
-    // Sort out the dates so we can draw a timeline later.
-    var dateFormat = d3.time.format('%Y-%m-%dT%H:%I:%SZ');
-  //从D3库中定义一个日期格式
-  //创建两个时间，一个最大，一个最小，最大的起始时间为1970
-    var mindate = new Date();
-    var maxdate = new Date(1970,1,1);
- 
-    // Create a new date object (d.dd) and work out the earliest and latest date in the dataset.
-    data.forEach(function (d) {
-	    tmp = dateFormat.parse(d["Payment Date"]);
-	    if (tmp < mindate) { mindate = tmp;	}
-	    if (tmp > maxdate) { maxdate = tmp; }
-	    d.dd = tmp;
+    return{
+        agency_name: d["Agency Name"],
+        investment_title: d["Investment Title"],
+        project_name: d["Project Name"],
+        lifecycle_cost: +d["Lifecycle Cost  ($ M)"],
+	    planned_cost: +d["Planned Cost ($ M)"],
+        agency_projected_cost: +d["Projected/Actual Cost ($ M)"],
+        start_date: d["Start Date"],
+        completion_date: d["Completion Date (B1)"],
+        planned_completion_date: d["Planned Project Completion Date (B2)"],
+        cost_variance: +d["Cost Variance ($ M)"],
+        date_variance: +d["Schedule Variance (in days)"]
+        
+    };
+},function(data){
+    
+    var cross = crossfilter(data);
+    var all = cross.groupAll();
+    
+
+    
+ //=======================Table========================= 
+    //Create a agency type dimension
+    var agencyName = cross.dimension(function(d) {
+	    return d.agency_name;//d["Agency Name"];
     });
-  
-    
-  
-    //Create an expense type dimension
-    var expenseType = ndx.dimension(function(d) {
-	    return d["Expense Type"];
+    //Create a cost type dimension
+    var agencyCost = cross.dimension(function(d){
+        return d.agency_projected_cost;//d["Projected/Actual Cost ($ M)"];
     });
     //Create a default group that counts the number of expenses per type
-    var expenseTypeGroup = expenseType.group();
+    var agencyNameGroup = agencyName.group();
   
     //Create a table of data
-  //创建数据表，用于Raw Data的显示
     dataTable
-        .dimension(expenseType)
+        .dimension(agencyName)
         .group(function (d) {
-            return d["Supplier Name"];
+            return d.agency_name;
         })
         .size(10)
         .columns([
-            'Payment Date',
-            'Expense Type',
-            'Expense Area',
-            'Supplier Name',
-	          'Company Status',
-            'Amount (GBP)'
+    
+        "agency_name",
+        "investment_title",
+        "project_name",
+        "lifecycle_cost",
+	    "planned_cost",
+        "agency_projected_cost",
+        "start_date",
+        "completion_date",
+        "planned_completion_date",
+        "cost_variance",
+        "date_variance"
         ]);
   
-    //ALL OF YOUR CODE GOES HERE
-    //使用crossfilter对象中的"Expense Type"纬度新建一个变量，用于Expenses per day
-  var flexible = ndx.dimension(function(d){//这个d究竟是什么？
-    return d["Expense Type"];
+//======================Row Chart========================
+  var agencyflexible = cross.dimension(function(d){
+    return d.agency_name;
   });
-  var flexibleGroup = flexible.group();
+  var agencyCostflexibleGroup = agencyflexible.group().reduceSum(function(d) {
+        return d.agency_projected_cost;//+d["Projected/Actual Cost ($ M)"];
+  });
   flexibleRow
   .width(480)
   .height(800)
-  .dimension(flexible)
-  .group(flexibleGroup)
+  .dimension(agencyflexible)
+  .group(agencyCostflexibleGroup)
   .label(function(d){
-    return d.key;
+    return d.key + formatDollars(d.value) + "M";
   })
   .title(function(d){
-    return d.value;
+    return formatDollars(d.value) + "M";
   })
   .elasticX(true)
   .ordering(function(d) {
@@ -78,45 +107,106 @@ d3.csv('http://training.theodi.org/DataWorkshop/course/en/exercises/Spend_april_
   .xAxis().ticks(6);//设置x轴的数值总数？ 测试下
   
   
-  //Get the data about the date of ecah expense
-  var date = ndx.dimension(function(d){
-    return d.dd; //设置排序后的日期
-  });
-  var dateGroup = date.group();
   
-  //Draw a timeline chart about daily expense 
-  timeline
-  .width(500)
-  .height(200)
-  .dimension(date)
-  .group(dateGroup)
-  .centerBar(false)//???
-  .elasticX(false)//???
-  .gap(0)
-  .xUnits(function() {
-    return 50; //why 50?
-  })
-  .x(d3.time.scale().domain([mindate,maxdate]))
-  .renderHorizontalGridLines(true); //绘图？？
  
-  //Get the data about the company staus
-  var supplierStatus = ndx.dimension(function(d){
-    return d["Company Status"];
-  });
-  var supplierStatusGroup = supplierStatus.group();
+//===================Pie chart Cost======================
+    
+    var profitAndLoss = cross.dimension(function(d) {
+        var pl = d3.round(d.cost_variance, 2);
+        if (pl > 0) {
+            return "Profit";
+        } else if (pl < 0) {
+            return "Loss";
+        } else {
+            return "Unknow";
+        }
+    }); 
+
+
+  var profitAndLossGroup = profitAndLoss.group();
   //Build the Pie chart for this data
-  statusPie
-  .width(180)
-    .height(180)
-    .radius(90)
-    .dimension(supplierStatus)
-    .group(supplierStatusGroup)
-    .ordinalColors(['blue', 'red', 'orange', 'gray'])
+  costStatusPie
+    .width(300)
+    .height(300)
+    .radius(120)
+    .dimension(profitAndLoss)
+    .group(profitAndLossGroup)
+    .ordinalColors(['#1a45dc', '#e93f65', 'gray'])
+    .colorDomain(["Profit","Loss","Unknow"])
     .label(function(d) {
-      return (d.key);
+      return (d.key) + "(" + Math.floor(d.value / all.value() * 100) + "%)";
+      
+    })
+    .innerRadius(30);
+  
+   // .renderHorizontalGridLines(true)
+   // .renderVerticalGridLines(true)
+   // .render();
+    
+    
+    //================Pie Chart Schedule=================
+    var punctualAndDelay = cross.dimension(function(d){
+        var pd = d3.round(d.date_variance,2);
+        if(pd > 0){
+            return "Punctual";
+        } else if (pd < 0){
+            return "Delay";
+        } else {
+            return "Unknow";
+        }
     });
+    
+    var punctualAndDelayGroup = punctualAndDelay.group();
+    
+    timeScheduleChart
+    .width(300)
+    .height(300)
+    .radius(120)
+    .dimension(punctualAndDelay)
+    .group(punctualAndDelayGroup)
+    .ordinalColors(['#1a45dc', '#e93f65', 'gray'])
+    .colorDomain(["Punctuak","Delay","Unknow"])
+    .colorDomain(["Low Risk","High Risk","Medium Risk"])
+    .label(function(d) {
+      return (d.key) + "(" + Math.floor(d.value / all.value() * 100) + "%)";
+      
+    })
+    .innerRadius(30);
+
+    
+    //================Pie Chart Risk====================
+    var riskStatus = cross.dimension(function(d){
+        var pd = d3.round(d.date_variance,2);
+        var pl = d3.round(d.cost_variance, 2);
+        if(pd*pl < 0){
+            return "Medium Risk";
+        }else if (pd < 0 || pl < 0){
+                  return "High Risk";
+                  }else{
+                      return "Low Risk";
+                  }
+    });
+    
+    var riskStatusGroup = riskStatus.group();
+    
+    riskStatusChart
+    .width(400)
+    .height(400)
+    .radius(200)
+    .dimension(riskStatus)
+    .group(riskStatusGroup)
+    .ordinalColors(['#1a45dc', '#e93f65', 'gray'])
+    .colorDomain(["Low Risk","High Risk","Medium Risk"])
+    .innerRadius(50)
+    .label(function(d) {
+      return (d.key) + "(" + Math.floor(d.value / all.value() * 100) + "%)";
+      
+    });
+
     //Render the charts! This MUST stay at the end
     dc.renderAll();
+    
+    
 
 });
   

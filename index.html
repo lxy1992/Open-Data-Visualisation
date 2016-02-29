@@ -21,6 +21,7 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		
 
 		<!-- Font Awesome CSS -->
 		<link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -209,7 +210,7 @@
 											<span>Data Cleaning</span>
 										</a>
 									</div>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-2">Wrong Date Format</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-2">Date Validation</a>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="project-2" tabindex="-1" role="dialog" aria-labelledby="project-2-label" aria-hidden="true">
@@ -217,14 +218,15 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												<h4 class="modal-title" id="project-2-label">Wrong Date Format</h4>
+												<h4 class="modal-title" id="project-2-label">Date Validation</h4>
 											</div>
 											<div class="modal-body">
 												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
                                                         <p><span>How to find it?</span></p>
-                                                        <p>Check the format of data in the dataset. In this GIF picture, it's clear to find this error in this dataset.</p>
+                                                        <p>Date Format: Check the format of data in the dataset. In this GIF picture, it's clear to find this error in this dataset.</p>
+                                                        
                                                         <p><span>How to deal with it?</span></p>
                                                         <p>Edit Cells-->Common Transforms-->To date</p>
 													</div>
@@ -479,7 +481,9 @@
 												<div class="row">
 													<div class="col-md-6">
                                                         <p><span>How to find it?</span></p>
+                                                        <p>There are two attributes which are describe the <span>"Updated Date"</span>. Merge the <sapn>"Updated Date"</sapn> and <span>"Updated Time"</span> into one column.</p>
 														<p><span>How to deal with it?</span></p>
+														<p>Choose the <span>Add column base on column</span> of <span>"Updated Date"</span>. Then type the code <code>cells['Updated Date'].value + ' ' + cells['Updated Time'].value</code> into the Expression form to merge these two columns.</p>
 													</div>
 													<div class="col-md-6">
 														<img src="images/Combine-Date-and-Time.gif" alt="">
@@ -504,7 +508,7 @@
 											<span>Data Cleaning</span>
 										</a>
 									</div>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-9">Redundant Attributes</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-9">Inconsistent Formats</a>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="project-9" tabindex="-1" role="dialog" aria-labelledby="project-9-label" aria-hidden="true">
@@ -512,19 +516,22 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												<h4 class="modal-title" id="project-9-label">Redundant Attributes</h4>
+												<h4 class="modal-title" id="project-9-label">Inconsistent Formats</h4>
 											</div>
 											<div class="modal-body">
 												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
 														<p><span>How to find it?</span></p>
-														<p></p>
+														<p>1. <bold>Extract Symbol Format</bold>: The data in the column of <span>"Lifecycle Cost"</span> has some number with dollar sign <span>"($m)"</span>. It will cause some problem in visualisaion. Using <span>Numberic Facet</span> and choose <span>Non-numberic</span> can find these wrong data.</p>
+                                                        <p>2. Number Format: Some numbers have extra comma separating like '1,000'.</p>
 														<p><span>How to deal with it?</span></p>
-														<p>Using <span>Edit column -- Remove this column</span> to remove this redundant Attribute</p>
+														<p>1. Using <span>Edit Cells-->Transform</span>, type in the Expression <code>value.replace('($m)',"")</code> to remove all doller sign. Then use <span>Edit Cells --> Common Transforms--> To number</span> to rule the format.</p>
+														<p>2. Using <span>Numberic Facet</span> on <span>"Project ID"</span>, then choose the <span>Non-numeric</span> to change it by using Expression <code>value.replace(",","")</code> to remove all "," in Project ID.</p>
 													</div>
 													<div class="col-md-6">
-														<img src="images/Redundant%20Attributes.gif" alt="">
+														<img src="images/Extract-Symbol-Format.gif" alt="">
+														<img src="images/Number-Format.gif" alt="">
 													</div>
 												</div>
 											</div>
@@ -537,16 +544,16 @@
 								<!-- Modal end -->
 							</div>
 
-							<div class="col-sm-6 col-md-3 isotope-item site-building">
+							<div class="col-sm-6 col-md-3 isotope-item Data-Cleaning">
 								<div class="image-box">
 									<div class="overlay-container">
 										<img src="images/portfolio-10.jpg" alt="">
 										<a class="overlay" data-toggle="modal" data-target="#project-10">
 											<i class="fa fa-search-plus"></i>
-											<span>Site Building</span>
+											<span>Data Cleaning</span>
 										</a>
 									</div>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-10">Project Title</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-10">Incorrect Data Entry</a>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="project-10" tabindex="-1" role="dialog" aria-labelledby="project-10-label" aria-hidden="true">
@@ -554,10 +561,10 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												<h4 class="modal-title" id="project-10-label">Project Title</h4>
+												<h4 class="modal-title" id="project-10-label">Incorrect Data Entry</h4>
 											</div>
 											<div class="modal-body">
-												<h3>Project Description</h3>
+												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
 														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sed, quidem quis praesentium, ut unde. Quae sed, incidunt laudantium nesciunt, optio corporis quod earum pariatur omnis illo saepe numquam suscipit, nemo placeat dignissimos eius mollitia et quas officia doloremque ipsum labore rem deserunt vero! Magnam totam delectus accusantium voluptas et, tempora quos atque, fugiat, obcaecati voluptatibus commodi illo voluptates dolore nemo quo soluta quis.</p>
@@ -672,28 +679,38 @@
 		<div class="section translucent-bg bg-image-1 blue">
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation1"  class="text-center title">Data Visualisation1</h1>
+				<h4 class="text-center"><a id="all">Reset All</a></h4>
 				<div class="space"></div>
 			    <section class="row">
 			        <div id="main-Visualisation" class="col-md-8 row">
-                       <div class="col-md-5">
-                           <h2>Company Status</h2>
+                       <div class="col-md-6">
+                           <h2>Cost Variance </h2>
+                           <h4><small><a id="reset_cost">Reset Cost</a></small></h4>
                            <div id="status_pie"></div>
                        </div>
                        
-                       <div class="col-md-7">
-                           <h2 id="timetitle">Expenses per day</h2>
-                           <div id="timeline"></div>
+                       <div class="col-md-6">
+                           <h2 id="timetitle">Schedule Variance</h2>
+                           <h4><small><a id="reset_time">Reset Time</a></small></h4>
+                           <div id="time-Schedule-Chart"></div>
+                       </div>
+                       <div class="col-md-12">
+                           <h2>Risk Status</h2>
+                           <h4><small><a id="reset_risk">Reset Risk</a></small></h4>
+                           <div id="Risk-Status-Chart"></div>
                        </div>
                        
-                       <div class="col-md-12">
-                           <h2>Raw data</h2>
-                           <table id="dc-data-table" class="table table-hover"></table>
-                       </div>
                        
                     </div>
                     <div id="sidebar" class="col-md-4">
-                       <h2>Your own title</h2>
+                       <h2>Agency Cost</h2>
+                       
                        <div id="flexible_row" ></div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                           <h2>Raw data</h2>
+                           <table id="dc-data-table" class="table table-hover"></table>
                     </div>
                 </section>
 			</div>
@@ -706,29 +723,26 @@
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation2"  class="text-center title">Data Visualisation2</h1>
 				<div class="space"></div>
-			    <section class="row">
-			        <div id="main-Visualisation" class="col-md-8 row">
-                       <div class="col-md-5">
-                           <h2>Company Status</h2>
-                           <div id="status_pie2"></div>
-                       </div>
-                       
-                       <div class="col-md-7">
-                           <h2 id="timetitle">Expenses per day</h2>
-                           <div id="timeline2"></div>
-                       </div>
-                       
-                       <div class="col-md-12">
-                           <h2>Raw data</h2>
-                           <table id="dc-data-table2" class="table table-hover"></table>
-                       </div>
-                       
-                    </div>
-                    <div id="sidebar" class="col-md-4">
-                       <h2>Your own title</h2>
-                       <div id="flexible_row" ></div>
-                    </div>
-                </section>
+			    <div id="container">
+                  <span id="loading">Loading...</span>
+                  <div id="agency-chart"></div>
+                  <div id="cost-variance-chart"></div>
+                  <div id="schedule-variance-chart"></div>
+                  <div id="count"></div>
+        
+                  <table id="project-table" class="table table-hover" style="display: none;">
+                  <thead>
+                    <tr>
+                    <th>Project Name</th>
+                    <th>Agency</th>
+                    <th style="text-align: center;">Projected/Actual Cost ($M)</th>
+                    <th style="text-align: center;">Cost Variance ($M)</th>
+                    <th>Projected/Actual Completion Date</th>
+                    <th style="text-align: center;">Schedule Variance (days)</th>
+                </tr>
+                  </thead>
+                  </table>
+                </div>
 			</div>
 		</div>
 		<!-- section end -->
@@ -842,9 +856,13 @@
         </script>
         <script type= "text/javascript" src="js/dc.js">
         </script>
-        
+         <!-- <script type="text/javascript" src="js/visualisation_test.js">
+        </script> -->
         <script type="text/javascript" src="js/visualisation1.js">
         </script>
+         <script type="text/javascript" src="js/visualisation_test.js">
+        </script>
+       
 
 	</body>
 </html>
