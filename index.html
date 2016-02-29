@@ -22,6 +22,8 @@
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 		
+		<!-- DataTables CSS -->
+		<link href="css/jquery.dataTables.min.css" rel="stylesheet">
 
 		<!-- Font Awesome CSS -->
 		<link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -34,6 +36,7 @@
 
 		<!-- Custom css --> 
 		<link href="css/custom.css" rel="stylesheet">
+		<link href="css/treemap.css" rel="stylesheet">
 		
 		<!-- DC css --> 
 		<link href="css/dc.css" rel="stylesheet">
@@ -680,29 +683,31 @@
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation1"  class="text-center title">Data Visualisation1</h1>
 				<h4 class="text-center"><a id="all">Reset All</a></h4>
+                <p>The audience of this visualisation:</p>
 				<div class="space"></div>
 			    <section class="row">
 			        <div id="main-Visualisation" class="col-md-8 row">
-                       <div class="col-md-6">
+                      
+                       <div class="col-md-6 text-center">
                            <h2>Cost Variance </h2>
                            <h4><small><a id="reset_cost">Reset Cost</a></small></h4>
-                           <div id="status_pie"></div>
+                           <div id="status_pie" class="col-md-12"></div>
                        </div>
                        
-                       <div class="col-md-6">
+                       <div class="col-md-6 text-center">
                            <h2 id="timetitle">Schedule Variance</h2>
                            <h4><small><a id="reset_time">Reset Time</a></small></h4>
-                           <div id="time-Schedule-Chart"></div>
+                           <div id="time-Schedule-Chart" class="col-md-12"></div>
                        </div>
-                       <div class="col-md-12">
+                       <div class="col-md-12 text-center">
                            <h2>Risk Status</h2>
                            <h4><small><a id="reset_risk">Reset Risk</a></small></h4>
-                           <div id="Risk-Status-Chart"></div>
+                           <div class="col-md-12" id="Risk-Status-Chart"></div>
                        </div>
                        
                        
                     </div>
-                    <div id="sidebar" class="col-md-4">
+                    <div id="sidebar" class="col-md-4 text-center">
                        <h2>Agency Cost</h2>
                        
                        <div id="flexible_row" ></div>
@@ -710,7 +715,20 @@
                     
                     <div class="col-md-12">
                            <h2>Raw data</h2>
-                           <table id="dc-data-table" class="table table-hover"></table>
+                           <table id="dc-data-table" class="table table-hover" >
+                              <thead>
+                               <tr>
+                                   <td>Agency Name</td>
+                                   <td>Investment Title</td>
+                                   <td>Project Name</td>
+                                   <td>Lifecycle Cost ($ M)</td>
+                                   <td>Planned Cost ($ M)</td>
+                                   <td>Projected Cost ($ M)</td>
+                                   <td>Cost Variance ($ M)</td>
+                                   <td>Data Variance(in day)</td>
+                               </tr>
+                              </thead>
+                           </table>
                     </div>
                 </section>
 			</div>
@@ -723,26 +741,7 @@
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation2"  class="text-center title">Data Visualisation2</h1>
 				<div class="space"></div>
-			    <div id="container">
-                  <span id="loading">Loading...</span>
-                  <div id="agency-chart"></div>
-                  <div id="cost-variance-chart"></div>
-                  <div id="schedule-variance-chart"></div>
-                  <div id="count"></div>
-        
-                  <table id="project-table" class="table table-hover" style="display: none;">
-                  <thead>
-                    <tr>
-                    <th>Project Name</th>
-                    <th>Agency</th>
-                    <th style="text-align: center;">Projected/Actual Cost ($M)</th>
-                    <th style="text-align: center;">Cost Variance ($M)</th>
-                    <th>Projected/Actual Completion Date</th>
-                    <th style="text-align: center;">Schedule Variance (days)</th>
-                </tr>
-                  </thead>
-                  </table>
-                </div>
+			    <div id="chart" data-toggle="tooltip"></div>
 			</div>
 		</div>
 		<!-- section end -->
@@ -846,21 +845,24 @@
 
 		<!-- Initialization of Plugins -->
 		<script type="text/javascript" src="js/template.js"></script>
-
+        <!-- DataTables Plugins -->
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        
 		<!-- Custom Scripts -->
-		<script type="text/javascript" src="js/custom.js"></script>
+		
 		<script type="text/javascript" src="js/colorbrewer.js"></script>
         <script type="text/javascript" src="js/crossfilter.js">
         </script>
         <script type="text/javascript" src="js/d3.min.js">
         </script>
+      
         <script type= "text/javascript" src="js/dc.js">
         </script>
          <!-- <script type="text/javascript" src="js/visualisation_test.js">
         </script> -->
         <script type="text/javascript" src="js/visualisation1.js">
         </script>
-         <script type="text/javascript" src="js/visualisation_test.js">
+         <script type="text/javascript" src="js/treemap.js">
         </script>
        
 

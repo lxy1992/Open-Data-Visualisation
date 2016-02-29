@@ -1,9 +1,10 @@
 
-var dataTable = dc.dataTable('#dc-data-table');
+var data_Table;
 var costStatusPie = dc.pieChart('#status_pie');
 var timeScheduleChart = dc.pieChart('#time-Schedule-Chart');
 var riskStatusChart = dc.pieChart('#Risk-Status-Chart');
 var flexibleRow = dc.rowChart('#flexible_row');
+//====================Reset===========================
 d3.selectAll('a#all').on('click', function () {
   dc.filterAll();
   dc.renderAll();
@@ -19,8 +20,12 @@ d3.selectAll('a#reset_risk').on('click', function () {
  riskStatusChart.filterAll();
   dc.renderAll();
 });
+//d3.selectAll('a#reset_agency').on('click', function () {
+ // flexibleRow.filterAll();
+ // dc.renderAll();
+//});
 
-var formatDollars = d3.format("$,.2f");
+var Money_Dollar_Format = d3.format("$,.2f");
 
 d3.csv('data/Projects_Data.csv', function (d) {
   //  if (+d["Projected/Actual Cost ($ M)"] == 0) {
@@ -33,7 +38,7 @@ d3.csv('data/Projects_Data.csv', function (d) {
         project_name: d["Project Name"],
         lifecycle_cost: +d["Lifecycle Cost  ($ M)"],
 	    planned_cost: +d["Planned Cost ($ M)"],
-        agency_projected_cost: +d["Projected/Actual Cost ($ M)"],
+        projected_cost: +d["Projected/Actual Cost ($ M)"],
         start_date: d["Start Date"],
         completion_date: d["Completion Date (B1)"],
         planned_completion_date: d["Planned Project Completion Date (B2)"],
@@ -50,44 +55,89 @@ d3.csv('data/Projects_Data.csv', function (d) {
     
  //=======================Table========================= 
     //Create a agency type dimension
-    var agencyName = cross.dimension(function(d) {
-	    return d.agency_name;//d["Agency Name"];
+    var projectName = cross.dimension(function(d){
+        return d.project_name;
     });
-    //Create a cost type dimension
-    var agencyCost = cross.dimension(function(d){
-        return d.agency_projected_cost;//d["Projected/Actual Cost ($ M)"];
-    });
-    //Create a default group that counts the number of expenses per type
-    var agencyNameGroup = agencyName.group();
-  
-    //Create a table of data
-    dataTable
-        .dimension(agencyName)
-        .group(function (d) {
-            return d.agency_name;
-        })
-        .size(10)
-        .columns([
     
-        "agency_name",
-        "investment_title",
-        "project_name",
-        "lifecycle_cost",
-	    "planned_cost",
-        "agency_projected_cost",
-        "start_date",
-        "completion_date",
-        "planned_completion_date",
-        "cost_variance",
-        "date_variance"
-        ]);
+     data_Table = $("#dc-data-table").dataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": false,
+        "bAutoWidth": false,
+        "bDeferRender": true,
+        "aaData": projectName.top(Infinity),
+        "bDestroy": true,
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "order": [[2, "desc"]],
+        "dom": "tlp",
+        "columns": [
+            {
+                "data": "agency_name",
+                "defaultContent": ""
+            },
+            {
+                "data": "investment_title",
+                "width": "20%",
+                "defaultContent": ""
+            },
+            {
+                "data": "project_name",
+                "width": "15%",
+                "defaultContent": ""
+            },
+            {
+                "data": "lifecycle_cost",
+                "defaultContent": ""
+            },
+            {
+                "data": "planned_cost",
+                "defaultContent": ""
+            },
+            {
+                "data": "projected_cost",
+                "defaultContent": "",
+                "render": function(d) {
+                    return d3.round(d, 2);
+                }
+            },
+            {
+                "data": "cost_variance",
+                "defaultContent": "",
+                "render": function(d) {
+                    return d3.round(d, 2);
+                }
+            },
+            {
+                "data": "date_variance",
+                "defaultContent": "",
+                "render": function(d) {
+                    return d3.round(d, 2);
+                }
+            },
+            
+        ]
+    });
+     function refreshTable() {
+        dc.events.trigger(function() {
+            data_Table.fnClearTable();
+            data_Table.fnAddData(projectName.top(Infinity));
+            data_Table.fnDraw();
+        });
+    }
+    costStatusPie.on("filtered", refreshTable);
+    timeScheduleChart.on("filtered", refreshTable);
+    riskStatusChart.on("filtered", refreshTable);
+    flexibleRow.on("filtered", refreshTable);
+    
   
 //======================Row Chart========================
   var agencyflexible = cross.dimension(function(d){
     return d.agency_name;
   });
   var agencyCostflexibleGroup = agencyflexible.group().reduceSum(function(d) {
-        return d.agency_projected_cost;//+d["Projected/Actual Cost ($ M)"];
+        return d.projected_cost;//+d["Projected/Actual Cost ($ M)"];
   });
   flexibleRow
   .width(480)
@@ -95,10 +145,10 @@ d3.csv('data/Projects_Data.csv', function (d) {
   .dimension(agencyflexible)
   .group(agencyCostflexibleGroup)
   .label(function(d){
-    return d.key + formatDollars(d.value) + "M";
+    return d.key + Money_Dollar_Format(d.value) + "M";
   })
   .title(function(d){
-    return formatDollars(d.value) + "M";
+    return Money_Dollar_Format(d.value) + "M";
   })
   .elasticX(true)
   .ordering(function(d) {
