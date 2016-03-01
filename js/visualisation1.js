@@ -39,7 +39,7 @@ d3.csv('data/Projects_Data.csv', function (d) {
         lifecycle_cost: +d["Lifecycle Cost  ($ M)"],
 	    planned_cost: +d["Planned Cost ($ M)"],
         projected_cost: +d["Projected/Actual Cost ($ M)"],
-        start_date: d["Start Date"],
+
         completion_date: d["Completion Date (B1)"],
         planned_completion_date: d["Planned Project Completion Date (B2)"],
         cost_variance: +d["Cost Variance ($ M)"],
@@ -54,7 +54,7 @@ d3.csv('data/Projects_Data.csv', function (d) {
 
     
  //=======================Table========================= 
-    //Create a agency type dimension
+    //Create a project type dimension
     var projectName = cross.dimension(function(d){
         return d.project_name;
     });
@@ -154,7 +154,7 @@ d3.csv('data/Projects_Data.csv', function (d) {
   .ordering(function(d) {
             return -d.value;
             })
-  .xAxis().ticks(6);//设置x轴的数值总数？ 测试下
+  .xAxis().ticks(6);
   
   
   

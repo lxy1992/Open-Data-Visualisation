@@ -741,7 +741,34 @@
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation2"  class="text-center title">Data Visualisation2</h1>
 				<div class="space"></div>
-			    <div id="chart" data-toggle="tooltip"></div>
+			    <section class="row">
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <div id="flexible_timeline"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <table id="dc-data-table2" class="table table-hover" >
+                              <thead>
+                               <tr>
+                                   <td>Project Name</td>
+                                   <td>Investment Title</td>
+                                   <td>Agency Name</td>
+                                   <td>Lifecycle Cost ($ M)</td>
+                                   <td>Planned Cost ($ M)</td>
+                                   <td>Projected Cost ($ M)</td>
+                                  
+                               </tr>
+                              </thead>
+                           </table>
+                    </div>
+                </div>
+                <div id="sidebar" class="col-md-4 text-center">
+                       <h2>Agency Cost</h2>
+                       
+                       <div id="project_timeline" ></div>
+                    </div>
+			        
+			    </section>
 			</div>
 		</div>
 		<!-- section end -->
@@ -862,7 +889,7 @@
         </script> -->
         <script type="text/javascript" src="js/visualisation1.js">
         </script>
-         <script type="text/javascript" src="js/treemap.js">
+         <script type="text/javascript" src="js/visualisation2.js">
         </script>
        
 
