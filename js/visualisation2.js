@@ -151,14 +151,14 @@ d3.csv('data/Projects_Data.csv', function (d){
     });
     
 projectTimeline
-    .width(500)
-    .height(220)
+    .width(600)
+    .height(400)
     .dimension(projectYear)
     .group(projectYearGroup)
     .centerBar(false)
     .elasticX(true)
     .brushOn(true)
-    .gap(0)
+    .gap(1)
     .xUnits(function() {
       return 50;
     })

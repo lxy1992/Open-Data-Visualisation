@@ -137,7 +137,8 @@ d3.csv('data/Projects_Data.csv', function (d) {
     return d.agency_name;
   });
   var agencyCostflexibleGroup = agencyflexible.group().reduceSum(function(d) {
-        return d.projected_cost;//+d["Projected/Actual Cost ($ M)"];
+        return d.projected_cost;
+      
   });
   flexibleRow
   .width(480)
