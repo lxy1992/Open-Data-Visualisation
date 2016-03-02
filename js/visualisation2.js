@@ -43,7 +43,8 @@ d3.csv('data/Projects_Data.csv', function (d){
         lifecycle_cost: +d["Lifecycle Cost  ($ M)"],
         start_date: d["Start Date"],
         planned_completion_date: d["Planned Project Completion Date (B2)"], 
-        project_year: dateFormat.parse(d["Start Date"])
+        project_year: dateFormat.parse(d["Start Date"]),
+        duration_year: d["Duration time (year)"]
         
     };
   
@@ -121,7 +122,7 @@ d3.csv('data/Projects_Data.csv', function (d){
     return d.agency_name;
   });
   var agencyCostflexibleGroup = agencyflexible.group().reduceSum(function(d) {
-        return d.projected_cost;
+        return d.duration_year;
   });
   flexibleProject
   .width(480)
@@ -129,10 +130,10 @@ d3.csv('data/Projects_Data.csv', function (d){
   .dimension(agencyflexible)
   .group(agencyCostflexibleGroup)
   .label(function(d){
-    return d.key + Money_Dollar_Format(d.value) + "M";
+    return d.key + d.value + "Years";
   })
   .title(function(d){
-    return Money_Dollar_Format(d.value) + "M";
+    return d.value + "Years";
   })
   .elasticX(true)
   .ordering(function(d) {
@@ -151,6 +152,31 @@ d3.csv('data/Projects_Data.csv', function (d){
     });
     
 projectTimeline
+    .width(600)
+    .height(400)
+    .dimension(projectYear)
+    .group(projectYearGroup)
+    .centerBar(false)
+    .elasticX(true)
+    .brushOn(true)
+    .gap(1)
+    .xUnits(function() {
+      return 50;
+    })
+    .x(d3.time.scale().domain([1990, 2015]))
+    .renderHorizontalGridLines(true);
+
+//=====================timeline===========================
+   
+     var projectYear = cross.dimension(function(d){
+      return d.project_year;
+        
+    });
+    var projectYearGroup = projectYear.group().reduceSum(function(d){
+        return d.duration_year;
+    });
+    
+durationChart
     .width(600)
     .height(400)
     .dimension(projectYear)
