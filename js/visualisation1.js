@@ -89,11 +89,17 @@ d3.csv('data/Projects_Data.csv', function (d) {
             },
             {
                 "data": "lifecycle_cost",
-                "defaultContent": ""
+                "defaultContent": "",
+                 "render": function(d) {
+                    return d3.round(d, 2);
+                }
             },
             {
                 "data": "planned_cost",
-                "defaultContent": ""
+                "defaultContent": "",
+                 "render": function(d) {
+                    return d3.round(d, 2);
+                }
             },
             {
                 "data": "projected_cost",
@@ -166,7 +172,9 @@ d3.csv('data/Projects_Data.csv', function (d) {
         var pl = d3.round(d.cost_variance, 2);
         if (pl > 0) {
             return "Profit";
-        } else if (pl < 0) {
+        } else if (pl == 0){
+            return "Equal"
+        }else if (pl < 0) {
             return "Loss";
         } else {
             return "Unknow";
@@ -182,8 +190,8 @@ d3.csv('data/Projects_Data.csv', function (d) {
     .radius(120)
     .dimension(profitAndLoss)
     .group(profitAndLossGroup)
-    .ordinalColors(['#1a45dc', '#e93f65', 'gray'])
-    .colorDomain(["Profit","Loss","Unknow"])
+    .ordinalColors(['#1a45dc', '#e93f65', '#3fe96e', 'gray'])
+    .colorDomain(["Profit","Loss","Equal","Unknow"])
     .label(function(d) {
       return (d.key) + "(" + Math.floor(d.value / all.value() * 100) + "%)";
       
@@ -198,7 +206,7 @@ d3.csv('data/Projects_Data.csv', function (d) {
     //================Pie Chart Schedule=================
     var punctualAndDelay = cross.dimension(function(d){
         var pd = d3.round(d.date_variance,2);
-        if(pd > 0){
+        if(pd >= 0){
             return "Punctual";
         } else if (pd < 0){
             return "Delay";

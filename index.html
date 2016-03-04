@@ -35,7 +35,7 @@
 		<link href="css/style.css" rel="stylesheet">
 
 		<!-- Custom css --> 
-		<link href="css/custom.css" rel="stylesheet">
+		
 		<link href="css/treemap.css" rel="stylesheet">
 		
 		<!-- DC css --> 
@@ -99,10 +99,11 @@
 										<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
 											<ul class="nav navbar-nav navbar-right">
 												<li class="active"><a href="#banner">Home</a></li>
-												<li><a href="#DataCleaning">Data Cleaning</a></li>
+												<li><a href="#about">About</a></li>
+												<li><a href="#DataCleaning">Preprocess</a></li>
 												<li><a href="#DataVisualisation1">Data Visualisation1</a></li>
 												<li><a href="#DataVisualisation2">Data Visualisation2</a></li>
-												<li><a href="#contact">Contact</a></li>
+												
 											</ul>
 										</div>
 
@@ -138,15 +139,102 @@
 			</div>
 		</div>
 		<!-- banner end -->
+    <!-- section start -->
+		
+		<div class="section clearfix object-non-visible" data-animation-effect="fadeIn">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 id="about" class="title text-center">About</h1>
+						
+						<div class="space"></div>
+						<div class="row">
+							<div class="col-md-6">
+							<div class="col-md-12">
+							    <img src="images/D3.jpg"  alt="">
+							</div>
+								
+								<div class="space"></div>
+							</div>
+							<div class="col-md-6">
+								
+								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingOne">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+													Project stages
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+											<div class="panel-body">
+                                               <ul class="list-unstyled">
+                                                 <li><i class="fa fa-caret-right pr-10 text-colored"></i> Cleaning data</li>
+                                                 <p>Original dataset contains plentiful data errors. The detail of how I found and fix them will be discussed in the <span>"Data Cleaning"</span> part in the <span>Preprocess</span> section. The <a herf="http://openrefine.org">Google Refine</a> and <span>Excel</span> have been used in cleaning this dataset.</p>
+									             <li><i class="fa fa-caret-right pr-10 text-colored"></i> Analysis Data and Manipulate Data</li>
+									             <p>This dataset contains the project information from US government agencies. After understanding the structure of this dataset, I manipulate the dateset for my need.</p>
+									             
+									             <li><i class="fa fa-caret-right pr-10 text-colored"></i> Visualisation</li>
+                                                   <p>Determine the audiences of these visualisations. The visualisation in this website has been built by the javascript library<a herf="https://d3js.org">D3.js</a>, <a herf="https://dc-js.github.io/dc.js/">DC.js</a> and <a herf="https://square.github.io/crossfilter/">Crossfilter.js</a></p> 
+                                                   
+									             <li><i class="fa fa-caret-right pr-10 text-colored"></i> Build a website to show these works</li>
+                                                   <p>After getting the permession from <a herf="http://www.ecs.soton.ac.uk/people/sc2">Dr. Sepi</a>. I built this website based on a open licence website model from <a herf="http://www.htmlcoder.me">HtmlCoder</a></p>
+								               </ul>
+                                                
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingTwo">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													 Credit Points
+												</a>
+											</h4>
+										</div>
+										<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+											<div class="panel-body">
+                                                This coursework uses some useful libraries to make this website and these visualisations more elegent and smoothly.
+                                                <p>It includes <a herf="https://d3js.org">D3.js</a>, <a herf="https://dc-js.github.io/dc.js/">DC.js</a>, <a herf="https://square.github.io/crossfilter/">Crossfilter.js</a>, <a herf="https://www.datatables.net">dataTable.js</a> and <a herf="http://getbootstrap.com/javascript/">Bootstrap.js</a></p>
+                                                <p>This courswork also inspired from <a herf="https://itdashboard.gov">US IT Dashboard</a>, the sample and API document in <a herf="https://github.com/mbostock/d3/wiki/Gallery">D3 Gallery</a></p>
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab" id="headingThree">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+													Open resource
+												</a>
+											</h4>
+										</div>
+										<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+											<div class="panel-body">
+                                                The source code and the process of this coursework will be public on my <a herf="https://github.com/lxy1992/Open-Data-Visualisation.git">Github</a> after submitting.
+											</div>
+										</div>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+				
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- section end -->
 
 	<!-- section start -->
 		<!-- ================ -->
 		<div class="section" >
 			<div class="container">
-				<h1 class="text-center title" id="DataCleaning">Data Cleaning</h1>
+				<h1 class="text-center title" id="DataCleaning">Preprocess</h1>
 				<div class="separator"></div>
 				<p class="lead text-center">This page will demonstrate most data clening and data manipulation operations I have done to this dataset.</p>
-                <p class="lead text-center"><span>You can click each picture to view the detail of these operations</span></p>
+                <p class="lead text-center"><span>You can click each picture to view the detail of these operations</span>It includes the <span>description</span> and <span>Gif picture</span> to show you how I did them.</p>
 				<br>			
 				<div class="row object-non-visible" data-animation-effect="fadeIn">
 					<div class="col-md-12">
@@ -187,8 +275,10 @@
 												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
-														<p>According to the result of text facet on the Unique Investment Identifier attribute, Vaules of some records have been misplaced.  </p>
-														<p>Using the custom text transform to correct these data into the right place</p>
+													    <p><span>How to find it?</span></p>
+                                                        <p>According to the result of <span>text facet</span> on the <span>Unique Investment Identifier</span> attribute, Vaules of some records have been misplaced.  </p>
+                                                        <p><span>How to deal with it?</span></p>
+														<p>Using the custom text transform to correct these data into the right place is an optional choice. However, in this case. I use the <span>Excel</span> to delete blank columns</p>
 													</div>
 													<div class="col-md-6">
 														<img src="images/delete_blankcolome.gif" alt="">
@@ -228,7 +318,7 @@
 												<div class="row">
 													<div class="col-md-6">
                                                         <p><span>How to find it?</span></p>
-                                                        <p>Date Format: Check the format of data in the dataset. In this GIF picture, it's clear to find this error in this dataset.</p>
+                                                        <p>Date Format: Check the format of data in the dataset. In this dataset, it has two different date format <code>year/month/day</code> and <code>day/month/year</code></p>
                                                         
                                                         <p><span>How to deal with it?</span></p>
                                                         <p>Edit Cells-->Common Transforms-->To date</p>
@@ -271,10 +361,13 @@
 												<div class="row">
 													<div class="col-md-6">
                                                         <p><span>How to find it?</span></p>
-                                                        <p>Clustering and merging usually are using to fix the classify and merge same data which has been identified into different data improperly.</p>
-                                                        <p>In this dataset, this mainly happened in the attribute "Project Name". So, using the text facet to analysis the situation of this attribute. Then using the function <span>"Cluster"</span> to address this probelm.</p>
+                                                        <p>Clustering and merging usually are using to fix the classify and merge same data which has been identified into different data improperly.
+                                                        In this dataset, this mainly happened in the attribute <span>"Project Name"</span>. So, using the <span>text facet</span> to analysis the situation of this attribute. </p>
+                                                        <p>1. Same name of department are divided into different groups.</p>
+                                                        <p>2. Different representation of same department. like <span>Department of Agriculture</span>, <span>DOA</span>, <span>Agriculture Department</span>.</p>
                                                         <p><span>How to deal with it?</span></p>
-                                                        <p>Using the "cluster" to analysis and identify which items are same, then click them and merge them under the same <span>"Project Name"</span>. </p>
+                                                        <p>1. Using the "cluster" to analysis and identify which items are same, then click them and merge them under the same <span>"Project Name"</span>. </p>
+                                                        <p>2. Change different representation into the same one.</p>
 													</div>
 													<div class="col-md-6">
 														<img src="images/Clustering.gif" alt="">
@@ -314,9 +407,9 @@
 												<div class="row">
 													<div class="col-md-6">
 														<p><span>How to find it?</span></p>
-														<p>After clustering and merging the same prject, I noticed that some project names are highly identical. For exsample, the project "Department of Agriculture" and "Department of Agraculture". After investigating these two names, these is no department named "Department of Agraculture" in US government. So, it's clear that it's a misspelling error.</p>
+                                                        <p>After clustering and merging the same prject, I noticed that some project names are highly identical. For exsample, the project <span>"Department of Agriculture"</span> and <span>"Department of Agraculture"</span>. After investigating these two names, these is no department named "Department of Agraculture" in US government. So, it's clear that it's a misspelling error.</p>
 														<p><span>How to deal with it?</span></p>
-														<p>Find the misspelling data in the Facet Box, then click the edit button. After that you can correct the mistake, and it will be merged into the same group.</p>
+                                                        <p>Find the misspelling data in the Facet Box, then click the <span>edit button</span>. After that you can correct the mistake, and it will be merged into the same group.</p>
 													</div>
 													<div class="col-md-6">
 														<img src="images/Misspelling.gif" alt="">
@@ -428,7 +521,6 @@
 									</div>
 									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-7">Conbine Values</a>
 								</div>
-								<!-- Modal -->
 								<div class="modal fade" id="project-7" tabindex="-1" role="dialog" aria-labelledby="project-7-label" aria-hidden="true">
 									<div class="modal-dialog modal-lg">
 										<div class="modal-content">
@@ -570,11 +662,14 @@
 												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sed, quidem quis praesentium, ut unde. Quae sed, incidunt laudantium nesciunt, optio corporis quod earum pariatur omnis illo saepe numquam suscipit, nemo placeat dignissimos eius mollitia et quas officia doloremque ipsum labore rem deserunt vero! Magnam totam delectus accusantium voluptas et, tempora quos atque, fugiat, obcaecati voluptatibus commodi illo voluptates dolore nemo quo soluta quis.</p>
-														<p>Molestiae sed enim laboriosam atque delectus voluptates rerum nostrum sapiente obcaecati molestias quasi optio exercitationem, voluptate quis consequatur libero incidunt, in, quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos nobis officiis, autem earum tenetur quidem. Quae non dicta earum. Ipsum autem eaque cum dolor placeat corporis quisquam dolorum at nesciunt.</p>
+														<p><span>How to find it?</span></p>
+														<p>Some <span>Agency codes</span> are not match the <Agency Name>. Using the <span>Text Facet</span> to "Agency code" and "Agency Name". Using <span>"include"</span> to choose the "Agency code" to see how many different "Agency Name" in this code.</p>
+                                                        <p><span>How to deal with it?</span></p>
+                                                        <p>Using <span>"include"</span> to choose the wrong named "Agency Name", then use edit to change these wrong <span>"Agency Code"</span> into right.</p>
+														
 													</div>
 													<div class="col-md-6">
-														<img src="images/portfolio-10.jpg" alt="">
+														<img src="images/Wrong-data-entry.gif" alt="">
 													</div>
 												</div>
 											</div>
@@ -587,16 +682,16 @@
 								<!-- Modal end -->
 							</div>
 
-							<div class="col-sm-6 col-md-3 isotope-item web-design">
+							<div class="col-sm-6 col-md-3 isotope-item Data-Manipulation">
 								<div class="image-box">
 									<div class="overlay-container">
 										<img src="images/portfolio-11.jpg" alt="">
 										<a class="overlay" data-toggle="modal" data-target="#project-11">
 											<i class="fa fa-search-plus"></i>
-											<span>Web Design</span>
+											<span>Data Manipulation</span>
 										</a>
 									</div>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-11">Project Title</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-11">Add New Attributes</a>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="project-11" tabindex="-1" role="dialog" aria-labelledby="project-11-label" aria-hidden="true">
@@ -604,17 +699,19 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												<h4 class="modal-title" id="project-11-label">Project Title</h4>
+												<h4 class="modal-title" id="project-11-label">Add New Attributes</h4>
 											</div>
 											<div class="modal-body">
-												<h3>Project Description</h3>
+												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sed, quidem quis praesentium, ut unde. Quae sed, incidunt laudantium nesciunt, optio corporis quod earum pariatur omnis illo saepe numquam suscipit, nemo placeat dignissimos eius mollitia et quas officia doloremque ipsum labore rem deserunt vero! Magnam totam delectus accusantium voluptas et, tempora quos atque, fugiat, obcaecati voluptatibus commodi illo voluptates dolore nemo quo soluta quis.</p>
-														<p>Molestiae sed enim laboriosam atque delectus voluptates rerum nostrum sapiente obcaecati molestias quasi optio exercitationem, voluptate quis consequatur libero incidunt, in, quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos nobis officiis, autem earum tenetur quidem. Quae non dicta earum. Ipsum autem eaque cum dolor placeat corporis quisquam dolorum at nesciunt.</p>
+														<p><span>Why add this?</span></p>
+														<p>In the visualisation, I'd like to shou the audiences the duration of all project. However, these is no this attribute in the original dataset. So, I decide to add this based on the <span>"Start Date"</span> and <span>"Completion Date"</span>.</p>
+														<p><span>How to manipulate this?</span></p>
+														<p>Using the <span>Add an column based on this column</span></p>
 													</div>
 													<div class="col-md-6">
-														<img src="images/portfolio-11.jpg" alt="">
+														<img src="images/Add-duration-time.gif" alt="">
 													</div>
 												</div>
 											</div>
@@ -627,16 +724,16 @@
 								<!-- Modal end -->
 							</div>
 
-							<div class="col-sm-6 col-md-3 isotope-item app-development">
+							<div class="col-sm-6 col-md-3 isotope-item Data-Cleaning">
 								<div class="image-box">
 									<div class="overlay-container">
 										<img src="images/portfolio-12.jpg" alt="">
 										<a class="overlay" data-toggle="modal" data-target="#project-12">
 											<i class="fa fa-search-plus"></i>
-											<span>App Development</span>
+											<span>Data Cleaning</span>
 										</a>
 									</div>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-12">Project Title</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-12">Remove useless Attributes</a>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="project-12" tabindex="-1" role="dialog" aria-labelledby="project-12-label" aria-hidden="true">
@@ -644,17 +741,20 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												<h4 class="modal-title" id="project-12-label">Project Title</h4>
+												<h4 class="modal-title" id="project-12-label">Remove useless Attributes</h4>
 											</div>
 											<div class="modal-body">
-												<h3>Project Description</h3>
+												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sed, quidem quis praesentium, ut unde. Quae sed, incidunt laudantium nesciunt, optio corporis quod earum pariatur omnis illo saepe numquam suscipit, nemo placeat dignissimos eius mollitia et quas officia doloremque ipsum labore rem deserunt vero! Magnam totam delectus accusantium voluptas et, tempora quos atque, fugiat, obcaecati voluptatibus commodi illo voluptates dolore nemo quo soluta quis.</p>
-														<p>Molestiae sed enim laboriosam atque delectus voluptates rerum nostrum sapiente obcaecati molestias quasi optio exercitationem, voluptate quis consequatur libero incidunt, in, quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos nobis officiis, autem earum tenetur quidem. Quae non dicta earum. Ipsum autem eaque cum dolor placeat corporis quisquam dolorum at nesciunt.</p>
+                                                        <p><span>How to find it?</span></p>
+                                                        <p>Aftering analysis this dataset, some attribute have been found not complete or not provide any useful information like <span>"Agency Project ID"</span>.</p>
+														<p><span>How to deal with it?</span></p>
+                                                        <p>Remove them from this dataset, it could improve the speed of data processing.</p>
+                                                        <p>Using <span>Edit the column-->Remove this column</span> to delete it.</p>
 													</div>
 													<div class="col-md-6">
-														<img src="images/portfolio-12.jpg" alt="">
+														<img src="images/Remove-useless-attribute.gif" alt="">
 													</div>
 												</div>
 											</div>
@@ -682,10 +782,50 @@
 		<div class="section translucent-bg bg-image-1 blue">
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation1"  class="text-center title">Data Visualisation1</h1>
-				<h4 class="text-center"><a id="all">Reset All</a></h4>
-                <p>The audience of this visualisation:</p>
+				
+                	
+                <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab1" id="headingOne1">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+													The audience of this visualisation
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
+											<div class="panel-body">
+                                                <p><span>People who want to know the Cost, Schedule and Risk status of projects from all departments of US government. </span></p>
+                                                
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab1" id="headingTwo2">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+													 How this visualisation satified these audiences
+												</a>
+											</h4>
+										</div>
+										<div id="collapseTwo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo2">
+											<div class="panel-body">
+                                                <P><span>This visualisation includes five charts. Each chart can interact with other charts to filter any information you want. Audiences could use different combination of filters to answear some specific questions like "How much money department of Argriculture spend on high risk relyed projects?". </span></P>
+                                                <p><span>1. Cost variance chart, which to show the percentage of Profit, Loss, Equal and Unknow. This result based on the cost variance data which is the differece between the planned cost and the real cost.</span></p>
+                                                <p><span>2. Schedule variance chart, which to show the percentage of Punctual, Delay and Unknow. This result based on the schedule variance data which is the difference between the planned completion date and the real completion date.</span></p>
+                                                <p><span>3. Risk status chart, which to show the percentage of high risk, meidum risk and low risk projects. This result based on the cost variance and schedule variance.</span></p>
+                                                <p><span>4. Agency Cost chart, which to show the cost of each agency. This reslut based on the sum of the cost of all project in same department.</span></p>
+                                                <p><span>5. Table chart, which contains the detail related information about all filtered projects.</span></p>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							
 				<div class="space"></div>
+            
 			    <section class="row">
+                    <h4 class="text-center"><a id="all">Reset All</a></h4>
 			        <div id="main-Visualisation" class="col-md-8 row">
                       
                        <div class="col-md-6 text-center">
@@ -714,7 +854,7 @@
                     </div>
                     
                     <div class="col-md-12">
-                           <h2>Raw data</h2>
+                           <h2>Detial data</h2>
                            <table id="dc-data-table" class="table table-hover" >
                               <thead>
                                <tr>
@@ -740,9 +880,46 @@
 		<div class="section translucent-bg bg-image-1 blue">
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation2"  class="text-center title">Data Visualisation2</h1>
+				 <div class="panel-group" id="accordion22" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab11" id="headingOne11">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion22" href="#collapseOne11" aria-expanded="true" aria-controls="collapseOne11">
+													The audience of this visualisation
+												</a>
+											</h4>
+										</div>
+										<div id="collapseOne11" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne11">
+											<div class="panel-body">
+                                                <p><span>People who want to know the Cost and duration of projects in each department yearly.</span></p>
+                                                
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading" role="tab11" id="headingTwo22">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion22" href="#collapseTwo22" aria-expanded="false" aria-controls="collapseTwo22">
+													 How this visualisation satified these audiences
+												</a>
+											</h4>
+										</div>
+										<div id="collapseTwo22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo22">
+											<div class="panel-body">
+                                                <P><span>This visualisation includes four charts. Each chart can interact with other charts to filter any information you want.</span></P>
+                                                <p><span>1. Year Cost chart, which to show the cost in each year. This result based on the actual cost data and start date of each project.</span></p>
+                                                <p><span>2. Duration chart, which to show the duration time of project every year. Using the Agency duration chat and this chart, audiences could easily see the project duration time of each department each year. This result based on the "duration time" which is manipulated into the dataset by me, which is the difference between the "Acutal Completion Date" and "Start Date".</span></p>
+                                                <p><span>3. Agency duration chart, which to show the sum of duration time in each department. This result based on the "Acutal Cost" and "Agency name".</span></p>
+                                                <p><span>4. Table chart, which to show the detail of these project. This reslut contains the detail information related to the rest charts in this visualisation.</span></p>
+                                                
+											</div>
+										</div>
+									</div>
+									
+								</div>
 				<div class="space"></div>
 			    <section class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="col-md-12">
                        <div class="col-md-12">
                            <h2>Cost yearly</h2>
@@ -756,7 +933,7 @@
                     </div>
                    
                 </div>
-                <div id="sidebar" class="col-md-4 text-center">
+                <div id="sidebar" class="col-md-5 text-center">
                        <h2>Project Time Cost</h2>
                        <p>Group by Agency</p>
                        <div id="flexible_timeline" ></div>
@@ -771,18 +948,29 @@
                                    <td>Investment Title</td>
                                    <td>Agency Name</td>
                                    <td>Lifecycle Cost ($ M)</td>
-                                   <td>Planned Cost ($ M)</td>
-                                   <td>Projected Cost ($ M)</td>
+                                   <td>Start Date</td>
+                                   <td>Duration Time (year)</td>
                                   
                                </tr>
                               </thead>
                            </table>
                     </div>
+                <!-- <div class="col-md-12">
+                    <form>
+                       <label><input type="radio" name="mode" value="size"> Size</label>
+                       <label><input type="radio" name="mode" value="count" checked> Count</label>
+                    </form>
+                    <div id="partition_chart"></div>
+                </div>
+                 <div class="col-md-12">
+                    <div id="chart"></div>
+                </div> -->
 			</div>
 		</div>
 		<!-- section end -->
 		
 		
+		<!-- ================ -->
 
 		<!-- ================ -->
 
@@ -790,60 +978,7 @@
 		<!-- ================ -->
 		<footer id="footer">
 
-			<!-- .footer start -->
-			<!-- ================ -->
-			<div class="footer section">
-				<div class="container">
-					<h1 class="title text-center" id="contact">Contact Us</h1>
-					<div class="space"></div>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="footer-content">
-								<p class="large">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel nam magnam natus tempora cumque, aliquam deleniti voluptatibus voluptas. Repellat vel, et itaque commodi iste ab, laudantium voluptas deserunt nobis.</p>
-								<ul class="list-icons">
-									<li><i class="fa fa-map-marker pr-10"></i> One infinity loop, 54100</li>
-									<li><i class="fa fa-phone pr-10"></i> +00 1234567890</li>
-									<li><i class="fa fa-fax pr-10"></i> +00 1234567891 </li>
-									<li><i class="fa fa-envelope-o pr-10"></i> your@email.com</li>
-								</ul>
-								<ul class="social-links">
-									<li class="facebook"><a target="_blank" href="https://www.facebook.com/pages/HtmlCoder/714570988650168"><i class="fa fa-facebook"></i></a></li>
-									<li class="twitter"><a target="_blank" href="https://twitter.com/HtmlcoderMe"><i class="fa fa-twitter"></i></a></li>
-									<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-									<li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
-									<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-									<li class="youtube"><a target="_blank" href="http://www.youtube.com"><i class="fa fa-youtube"></i></a></li>
-									<li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
-									<li class="pinterest"><a target="_blank" href="http://www.pinterest.com"><i class="fa fa-pinterest"></i></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="footer-content">
-								<form role="form" id="footer-form">
-									<div class="form-group has-feedback">
-										<label class="sr-only" for="name2">Name</label>
-										<input type="text" class="form-control" id="name2" placeholder="Name" name="name2" required>
-										<i class="fa fa-user form-control-feedback"></i>
-									</div>
-									<div class="form-group has-feedback">
-										<label class="sr-only" for="email2">Email address</label>
-										<input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2" required>
-										<i class="fa fa-envelope form-control-feedback"></i>
-									</div>
-									<div class="form-group has-feedback">
-										<label class="sr-only" for="message2">Message</label>
-										<textarea class="form-control" rows="8" id="message2" placeholder="Message" name="message2" required></textarea>
-										<i class="fa fa-pencil form-control-feedback"></i>
-									</div>
-									<input type="submit" value="Send" class="btn btn-default">
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- .footer end -->
+		
 
 			<!-- .subfooter start -->
 			<!-- ================ -->
@@ -851,7 +986,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<p class="text-center">Copyright © 2014 Worthy by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>.</p>
+							<p class="text-center">Copyright © 2016 by <a target="_blank" href="http://htmlcoder.me">Xinyan Lu</a>.</p>
 						</div>
 					</div>
 				</div>
@@ -894,12 +1029,13 @@
       
         <script type= "text/javascript" src="js/dc.js">
         </script>
-         <!-- <script type="text/javascript" src="js/visualisation_test.js">
-        </script> -->
         <script type="text/javascript" src="js/visualisation1.js">
         </script>
          <script type="text/javascript" src="js/visualisation2.js">
         </script>
+       <!-- <script type="text/javascript" src="js/partition.js">
+        </script>-->
+        
        
 
 	</body>

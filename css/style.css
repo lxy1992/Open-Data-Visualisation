@@ -1,10 +1,4 @@
-/* Theme Name:Worthy - Free Powerful Theme by HtmlCoder
-Author:HtmlCoder
-Author URI:http://www.htmlcoder.me
-Version:1.0.0
-Created:November 2014
-License:Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/)
-File Description:Main CSS file of the template */
+
 
 /* Typography
 ----------------------------------------------------------------------------- */
@@ -69,6 +63,7 @@ p span{
 }
 a {
 	color: #55acee;
+    text-emphasis: bold;
 }
 a:hover {
 	color: #339BEB;

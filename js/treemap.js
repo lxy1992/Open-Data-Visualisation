@@ -1,3 +1,4 @@
+// set the margin of the chart
 var margin = {top: 20, right: 0, bottom: 0, left: 0},
     width = 960,
     height = 500 - margin.top - margin.bottom,
@@ -5,6 +6,7 @@ var margin = {top: 20, right: 0, bottom: 0, left: 0},
     formatVarianceDollars = d3.format('+$,.2f'),
     transitioning;
 
+// set the x,y linear scale
 var x = d3.scale.linear()
     .domain([0, width])
     .range([0, width]);
@@ -13,10 +15,12 @@ var y = d3.scale.linear()
     .domain([0, height])
     .range([0, height]);
 
+//create the tooltip 
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+// create the layout of tree map
 var treemap = d3.layout.treemap()
     .children(function(d, depth) { return depth ? null : d._values })
     .value(function(d) { return d.projected_cost })
@@ -24,14 +28,16 @@ var treemap = d3.layout.treemap()
     .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
     .round(false);
 
+//create the SVG of tree map and append on the HTML page
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .style("margin-left", -margin.left + "px")
     .style("margin-right", -margin.right + "px")
-    .append("g")
+  .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .style("shape-rendering", "crispEdges")
+// set hte mousemove function about tooltip
     .on("mousemove", function() {
         var coords = d3.mouse(this);
         var xflip = coords[0] + 235 > width;
@@ -42,9 +48,11 @@ var svg = d3.select("#chart").append("svg")
             .style("right", xflip ? (width - coords[0] + 20) + "px" : "auto");
     });
 
+//Create the grandparent for Navigation Bar
 var grandparent = svg.append("g")
     .attr("class", "grandparent");
 
+//Append the "rect" and "text" from two display function
 grandparent.append("rect")
     .attr("y", -margin.top)
     .attr("width", width)
@@ -145,7 +153,7 @@ d3.csv("data/Projects_Data.csv", function(data) {
         grandparent
             .datum(d.parent)
             .on("click", transition)
-          .select("text")
+            .select("text")
             .text(name(d));
 
         // Title / navigation bar

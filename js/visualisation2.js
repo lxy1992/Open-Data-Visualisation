@@ -44,7 +44,7 @@ d3.csv('data/Projects_Data.csv', function (d){
         start_date: d["Start Date"],
         planned_completion_date: d["Planned Project Completion Date (B2)"], 
         project_year: dateFormat.parse(d["Start Date"]),
-        duration_year: d["Duration time (year)"]
+        duration_year: +d["Duration time (year)"]
         
     };
   
@@ -88,18 +88,19 @@ d3.csv('data/Projects_Data.csv', function (d){
             },
             {
                 "data": "lifecycle_cost",
-                "defaultContent": ""
+                "defaultContent": "",
+                 "render": function(d) {
+                    return d3.round(d, 2);
+                }
             },
             {
                 "data": "project_year",
                 "defaultContent": ""
             },
             {
-                "data": "planned_completion_date",
+                "data": "duration_year",
                 "defaultContent": "",
-                "render": function(d) {
-                    return d3.round(d, 2);
-                }
+                
             },
             
         ]
