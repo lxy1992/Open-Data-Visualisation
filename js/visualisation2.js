@@ -4,19 +4,19 @@ var flexibleProject = dc.rowChart('#flexible_timeline');
 var durationChart = dc.barChart('#duration');
 
 //======================Rest===========================
-d3.selectAll('a#all').on('click', function () {
+d3.selectAll('a#all2').on('click', function () {
   dc.filterAll();
   dc.renderAll();
 });
-d3.selectAll('a#reset_timeline').on('click', function () {
-  costStatusPie.filterAll();
+d3.selectAll('a#reset_projectTimeline').on('click', function () {
+  projectTimeline.filterAll();
   dc.renderAll();
 });
-d3.selectAll('a#reset_flexible').on('click', function () { timeScheduleChart.filterAll();
+d3.selectAll('a#reset_flexibleProject').on('click', function () { flexibleProject.filterAll();
   dc.renderAll();
 });
-d3.selectAll('a#reset_duration').on('click', function () {
- riskStatusChart.filterAll();
+d3.selectAll('a#reset_durationChart').on('click', function () {
+ durationChart.filterAll();
   dc.renderAll();
 });
 
