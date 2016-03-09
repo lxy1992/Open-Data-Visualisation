@@ -198,6 +198,8 @@ d3.csv('data/Projects_Data.csv', function (d) {
     })
     .innerRadius(30);
   
+
+  
    // .renderHorizontalGridLines(true)
    // .renderVerticalGridLines(true)
    // .render();
@@ -261,7 +263,8 @@ d3.csv('data/Projects_Data.csv', function (d) {
       return (d.key) + "(" + Math.floor(d.value / all.value() * 100) + "%)";
       
     });
-
+    
+  
     //Render the charts! This MUST stay at the end
     dc.renderAll();
     

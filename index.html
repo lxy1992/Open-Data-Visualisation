@@ -233,8 +233,8 @@
 			<div class="container">
 				<h1 class="text-center title" id="DataCleaning">Preprocess</h1>
 				<div class="separator"></div>
-                <p class="lead text-center">This page shows how to find and fix <span>10</span> types errors in this dataset. Some errors have been combined into a type. And <span>2</span> type of data manipulation operations.</p>
-                <p class="lead text-center">You can <span>click each picture</span> to view the <span>detail</span> of these operations. It includes the <span>description</span> and <span>Gif picture</span> .</p>
+                <p class="lead text-center">This page shows how to find and fix <span>10</span> types <span>data cleaning</span> errors in this dataset. Some errors have been combined into one type. And <span>2</span> type of <span>data manipulation</span> operations.</p>
+                <p class="lead text-center">Use <span>filter button</span> to choose You can <span>click each picture</span> to view the <span>detail</span> of these operations. It includes the <span>description</span> and <span>Gif picture</span> .</p>
 				<br>			
 				<div class="row object-non-visible" data-animation-effect="fadeIn">
 					<div class="col-md-12">
@@ -346,7 +346,7 @@
 											<span>Data Cleaning</span>
 										</a>
 									</div>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-3">Clustering and Merge</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#project-3">Multiple Representations</a>
 								</div>
 								<!-- Modal -->
 								<div class="modal fade" id="project-3" tabindex="-1" role="dialog" aria-labelledby="project-3-label" aria-hidden="true">
@@ -354,17 +354,17 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												<h4 class="modal-title" id="project-3-label">Clustering and Merge</h4>
+												<h4 class="modal-title" id="project-3-label">Multiple Representations</h4>
 											</div>
 											<div class="modal-body">
 												<h3>Description</h3>
 												<div class="row">
 													<div class="col-md-6">
                                                         <p><span>How to find it?</span></p>
-                                                        <p>Clustering and merging usually are using to fix the classify and merge same data which has been identified into different data improperly.
+                                                        <p>Clustering and merging usually are used to fix the classify and merge same records which has been identified into different data improperly.
                                                         In this dataset, this mainly happened in the attribute <span>"Project Name"</span>. So, using the <span>text facet</span> to analysis the situation of this attribute. </p>
                                                         <p>1. Same name of department are divided into different groups.</p>
-                                                        <p>2. Different representation of same department. like <span>Department of Agriculture</span>, <span>DOA</span>, <span>Agriculture Department</span>.</p>
+                                                        <p>2. Different representation of same department. like <span>Department of Agriculture</span>, abbreviation <span>DOA</span>, <span>Agriculture Department</span>.</p>
                                                         <p><span>How to deal with it?</span></p>
                                                         <p>1. Using the "cluster" to analysis and identify which items are same, then click them and merge them under the same <span>"Project Name"</span>. </p>
                                                         <p>2. Change different representation into the same one.</p>
@@ -782,7 +782,7 @@
 		<div class="section translucent-bg bg-image-1 blue">
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
 				<h1 id="DataVisualisation1"  class="text-center title">Data Visualisation1</h1>
-				
+				<p class="text-center">Please click the <span>bar</span> below to see the detail.</p>
                 	
                 <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
 									<div class="panel panel-default">
@@ -793,6 +793,7 @@
 												</a>
 											</h4>
 										</div>
+                                        
 										<div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
 											<div class="panel-body">
                                                 <p><span>People who want to know the Cost, Schedule and Risk status of projects from all departments of US government. </span></p>
@@ -826,6 +827,8 @@
             
 			    <section class="row">
                     <h4 class="text-center"><a id="all">Reset All</a></h4>
+                   
+                  
 			        <div id="main-Visualisation" class="col-md-8 row">
                       
                        <div class="col-md-6 text-center">
@@ -852,7 +855,7 @@
                        
                        <div id="flexible_row" ></div>
                     </div>
-                    
+                     
                     <div class="col-md-12">
                            <h2>Detial data</h2>
                            <table id="dc-data-table" class="table table-hover" >

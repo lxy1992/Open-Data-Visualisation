@@ -131,7 +131,7 @@ d3.csv('data/Projects_Data.csv', function (d){
   .dimension(agencyflexible)
   .group(agencyCostflexibleGroup)
   .label(function(d){
-    return d.key + d.value + "Years";
+    return d.key + "------" + d.value + "Years";
   })
   .title(function(d){
     return d.value + "Years";
@@ -159,13 +159,23 @@ projectTimeline
     .group(projectYearGroup)
     .centerBar(false)
     .elasticX(true)
+    .yAxisLabel('Cost')
     .brushOn(true)
     .gap(1)
     .xUnits(function() {
       return 50;
     })
     .x(d3.time.scale().domain([1990, 2015]))
-    .renderHorizontalGridLines(true);
+    .renderHorizontalGridLines(true)
+    projectTimeline.on('renderlet', function (chart) {
+		chart.selectAll("g.y text")
+			.attr('dx', '5')
+			.attr('dy', '15')
+			.attr('transform', "rotate(45)"); 
+            //Roate the Y      
+	});
+    
+    
 
 //=====================timeline===========================
    
