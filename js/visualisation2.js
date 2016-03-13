@@ -44,17 +44,19 @@ d3.csv('data/Projects_Data.csv', function (d){
         start_date: d["Start Date"],
         planned_completion_date: d["Planned Project Completion Date (B2)"], 
         project_year: dateFormat.parse(d["Start Date"]),
+        
         duration_year: +d["Duration time (year)"]
         
     };
   
 },function(data){
     
-    var cross = crossfilter(data);
-    var all = cross.groupAll();
+    var cross2 = crossfilter(data);
+    var all = cross2.groupAll();
+    
     
 //========================Table=======================
-    var projectName = cross.dimension(function(d){
+    var projectName = cross2.dimension(function(d){
         return d.project_name;
     });
     
@@ -96,10 +98,12 @@ d3.csv('data/Projects_Data.csv', function (d){
             {
                 "data": "project_year",
                 "defaultContent": ""
+                
+               
             },
             {
                 "data": "duration_year",
-                "defaultContent": "",
+                "defaultContent": ""
                 
             },
             
@@ -119,7 +123,7 @@ d3.csv('data/Projects_Data.csv', function (d){
 
 
 //======================Flexible Row Chart===============
-  var agencyflexible = cross.dimension(function(d){
+  var agencyflexible = cross2.dimension(function(d){
     return d.agency_name;
   });
   var agencyCostflexibleGroup = agencyflexible.group().reduceSum(function(d) {
@@ -144,8 +148,9 @@ d3.csv('data/Projects_Data.csv', function (d){
 
 //=====================timeline===========================
    
-     var projectYear = cross.dimension(function(d){
+     var projectYear = cross2.dimension(function(d){
       return d.project_year;
+         //return d.dd;
         
     });
     var projectYearGroup = projectYear.group().reduceSum(function(d){
@@ -165,7 +170,7 @@ projectTimeline
     .xUnits(function() {
       return 50;
     })
-    .x(d3.time.scale().domain([1990, 2015]))
+    .x(d3.time.scale().domain([1990, 2012]))
     .renderHorizontalGridLines(true)
     projectTimeline.on('renderlet', function (chart) {
 		chart.selectAll("g.y text")
@@ -179,8 +184,9 @@ projectTimeline
 
 //=====================timeline===========================
    
-     var projectYear = cross.dimension(function(d){
+     var projectYear = cross2.dimension(function(d){
       return d.project_year;
+         //return d.dd;
         
     });
     var projectYearGroup = projectYear.group().reduceSum(function(d){
@@ -199,7 +205,7 @@ durationChart
     .xUnits(function() {
       return 50;
     })
-    .x(d3.time.scale().domain([1990, 2015]))
+    .x(d3.time.scale().domain([1990, 2012]))
     .renderHorizontalGridLines(true);
     
     dc.renderAll();
