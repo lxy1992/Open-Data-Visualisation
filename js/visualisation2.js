@@ -164,7 +164,8 @@ projectTimeline
     .group(projectYearGroup)
     .centerBar(false)
     .elasticX(true)
-    .yAxisLabel('Cost')
+    .yAxisLabel('Cost (M $)')
+    .xAxisLabel('Year')
     .brushOn(true)
     .gap(1)
     .xUnits(function() {
@@ -201,6 +202,8 @@ durationChart
     .centerBar(false)
     .elasticX(true)
     .brushOn(true)
+    .yAxisLabel('Duration (Years)')
+    .xAxisLabel('Year')
     .gap(1)
     .xUnits(function() {
       return 50;
