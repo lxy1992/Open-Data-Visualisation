@@ -20,6 +20,7 @@ d3.selectAll('a#reset_risk').on('click', function () {
  riskStatusChart.filterAll();
   dc.renderAll();
 });
+
 //d3.selectAll('a#reset_agency').on('click', function () {
  // flexibleRow.filterAll();
  // dc.renderAll();

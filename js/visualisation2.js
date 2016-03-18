@@ -2,6 +2,8 @@ var data_Table;
 var projectTimeline = dc.barChart('#project_timeline');
 var flexibleProject = dc.rowChart('#flexible_timeline');
 var durationChart = dc.barChart('#duration');
+var yearandDuration = dc.lineChart('#year_duration');
+var scalingChart = dc.barChart('#scaling');
 
 //======================Rest===========================
 d3.selectAll('a#all2').on('click', function () {
@@ -19,6 +21,11 @@ d3.selectAll('a#reset_durationChart').on('click', function () {
  durationChart.filterAll();
   dc.renderAll();
 });
+d3.selectAll('a#reset_year_duration').on('click', function () {
+  yearandDuration.filterAll();
+  scalingChart.filterAll();
+  dc.renderAll();
+});
 
 //====================data format=======================
 
@@ -29,12 +36,12 @@ var Money_Dollar_Format = d3.format("$,.2f");
 d3.csv('data/Projects_Data.csv', function (d){
     
    
-   var dateFormat = d3.time.format('%Y-%m-%dT%H:%I:%SZ');
-   var yearFormat = d3.time.format('%Y');
-  
-  
+    var dateFormat = d3.time.format('%Y-%m-%dT%H:%I:%SZ');
+    var yearFormat = d3.time.format('%Y');
+    
     
     return{
+        
         agency_name: d["Agency Name"],
         investment_title: d["Investment Title"],
         project_name: d["Project Name"],
@@ -45,7 +52,9 @@ d3.csv('data/Projects_Data.csv', function (d){
         planned_completion_date: d["Planned Project Completion Date (B2)"], 
         project_year: dateFormat.parse(d["Start Date"]),
         
-        duration_year: +d["Duration time (year)"]
+        duration_year: +d["Duration time (year)"],
+        //minyear: d[yearFormat.parse(mindate)],
+        //maxyear: d[yearFormat.parse(maxdate)]
         
     };
   
@@ -53,8 +62,21 @@ d3.csv('data/Projects_Data.csv', function (d){
     
     var cross2 = crossfilter(data);
     var all = cross2.groupAll();
-    
-    
+    var dateFormat = d3.time.format('%Y-%m-%dT%H:%I:%SZ');
+    var yearFormat = d3.time.format('%Y');
+    var mindate = new Date();
+    var maxdate = new Date(1970, 1, 1);
+    data.forEach(function(d){
+        var tmp = dateFormat.parse(d.start_date);
+        if (tmp < mindate) {
+            mindate = tmp;
+        }
+        if (tmp > maxdate) {
+            maxdate = tmp;
+        }
+        
+    }); 
+   
 //========================Table=======================
     var projectName = cross2.dimension(function(d){
         return d.project_name;
@@ -150,7 +172,7 @@ d3.csv('data/Projects_Data.csv', function (d){
    
      var projectYear = cross2.dimension(function(d){
       return d.project_year;
-         //return d.dd;
+        
         
     });
     var projectYearGroup = projectYear.group().reduceSum(function(d){
@@ -163,7 +185,7 @@ projectTimeline
     .dimension(projectYear)
     .group(projectYearGroup)
     .centerBar(false)
-    .elasticX(true)
+    .elasticX(false)
     .yAxisLabel('Cost (M $)')
     .xAxisLabel('Year')
     .brushOn(true)
@@ -171,7 +193,7 @@ projectTimeline
     .xUnits(function() {
       return 50;
     })
-    .x(d3.time.scale().domain([1990, 2012]))
+    .x(d3.time.scale().domain([mindate,maxdate]))
     .renderHorizontalGridLines(true)
     projectTimeline.on('renderlet', function (chart) {
 		chart.selectAll("g.y text")
@@ -187,10 +209,9 @@ projectTimeline
    
      var projectYear = cross2.dimension(function(d){
       return d.project_year;
-         //return d.dd;
         
     });
-    var projectYearGroup = projectYear.group().reduceSum(function(d){
+    var projectDuration = projectYear.group().reduceSum(function(d){
         return d.duration_year;
     });
     
@@ -198,9 +219,9 @@ durationChart
     .width(600)
     .height(400)
     .dimension(projectYear)
-    .group(projectYearGroup)
+    .group(projectDuration)
     .centerBar(false)
-    .elasticX(true)
+    .elasticX(false)
     .brushOn(true)
     .yAxisLabel('Duration (Years)')
     .xAxisLabel('Year')
@@ -208,8 +229,76 @@ durationChart
     .xUnits(function() {
       return 50;
     })
-    .x(d3.time.scale().domain([1990, 2012]))
+    .x(d3.time.scale().domain([mindate,maxdate]))
     .renderHorizontalGridLines(true);
+//======================line char year and duration=================
+    var projectYear = cross2.dimension(function(d){
+      return d.project_year;
+        
+    });
+     var project_projectcost = projectYear.group().reduceSum(function(d){
+        return d.projected_cost;
+    });
+    var project_plancost = projectYear.group().reduceSum(function(d){
+        return d.planned_cost;
+    });
+    
+yearandDuration
+    .renderArea(true)
+    .transitionDuration(1000)
+    .mouseZoomable(false)
+    .width(1000)
+    .height(400)
+    .rangeChart(scalingChart)
+    .dimension(projectYear)
+    .xUnits(function() {
+      return 30;
+    })
+    .x(d3.time.scale().domain([mindate,maxdate]))
+    //.x(d3.time.scale().domain(d.minyear, d.maxyear))
+    .group(project_plancost, 'Planned Cost')
+    .stack(project_projectcost, 'Actual Cost', function(d){
+        return d.value;
+    })
+    //.centerBar(true)
+    .title(function(d){
+        var value = d.planned_cost ? d.planned_cost : d.value;
+        if(isNaN(value)){
+            value = 0;
+        }
+        return d.key + '\n' + d3.round(value, 2);
+    })
+    .legend(dc.legend().x(800).y(5).itemHeight(20).gap(5))
+    .elasticY(true)
+    .elasticX(false)
+    .brushOn(true)
+    .yAxisLabel('Planned/ Actual Cost ($ M)')
+    .xAxisLabel('Year')
+    //.gap(1)
+    .renderHorizontalGridLines(true)
+    yearandDuration.on('renderlet', function (chart) {
+		chart.selectAll("g.y text")
+			.attr('dx', '5')
+			.attr('dy', '15')
+			.attr('transform', "rotate(45)"); 
+            //Roate the Y      
+	});
+    
+    
+//===================scaling bar chart============================
+    scalingChart
+    .width(990)
+    .height(80)
+    .dimension(projectYear)
+    .group(projectYear.group())
+    .centerBar(true)
+    .gap(2)
+    .elasticX(true)
+    .x(d3.time.scale().domain([mindate,maxdate]))
+    .xUnits(function(){
+        return 50;
+    });
+    scalingChart.yAxis().ticks(0);
     
     dc.renderAll();
 });
