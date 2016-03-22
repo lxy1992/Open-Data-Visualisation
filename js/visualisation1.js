@@ -228,7 +228,7 @@ d3.csv('data/Projects_Data.csv', function (d) {
     .group(punctualAndDelayGroup)
     .ordinalColors(['#1a45dc', '#e93f65', 'gray'])
     .colorDomain(["Punctuak","Delay","Unknow"])
-    .colorDomain(["Low Risk","High Risk","Medium Risk"])
+    //.colorDomain(["Low Risk","High Risk","Medium Risk"])
     .label(function(d) {
       return (d.key) + "(" + Math.floor(d.value / all.value() * 100) + "%)";
       
